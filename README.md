@@ -63,5 +63,5 @@ pip install -r .\requirements.txt
 Project is complete. I currently have no plans to further develop the game, as I have achieved the intended learning outcomes
 
 ## Sources
-Game was based on the popular classic game of the same title
-Graphics used in game come from the website https://www.flaticon.com/
+#### Game was based on the popular classic game of the same title.
+#### Graphics used in game come from the website https://www.flaticon.com/
