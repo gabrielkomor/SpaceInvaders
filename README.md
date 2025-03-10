@@ -27,14 +27,14 @@ pip install -r .\requirements.txt
 ```
 
 ## Screenshots
-Sample screenshots from the game:
-
+### Sample screenshots from the game:
+##### Beginning of the game
 ![Beginning of the game](./exampleScreens/SpaceInvaders_1.jpg)
-
+##### Game shop
 ![Game shop](./exampleScreens/SpaceInvaders_2.jpg)
-
+##### New opponents
 ![New opponents](./exampleScreens/SpaceInvaders_3.jpg)
-
+##### Final boss
 ![Final boss](./exampleScreens/SpaceInvaders_4.jpg)
 
 ## Game Controls
