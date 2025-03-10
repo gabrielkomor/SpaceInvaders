@@ -6,6 +6,7 @@ Computer game based on the popular space invaders game
 * [Technologies Used](#technologies-used)
 * [Setup](#setup)
 * [Screenshots](#screenschots)
+* [Game Controls](game-controls)
 * [Project Status](#project-status)
 * [Sources](#sources)
 
@@ -35,6 +36,21 @@ Sample screenshots from the game:
 ![New opponents](./exampleScreens/SpaceInvaders_3.jpg)
 
 ![Final boss](./exampleScreens/SpaceInvaders_4.jpg)
+
+## Game Controls
+Movement:
+* Go left: A key or left key arrow or click on left button on game interface
+* Go right: D key or right key arrow or click on right button on game interface
+Shooting:
+* Press space once or click on bullet icon once on game interface
+Pause:
+* Press P key or click on pause button on game interface
+Buy in shoop:
+* Click on sprocket on game interface next to upgrade which you want to buy
+Leave from shoop:
+* Click on red icon witch door on game interface
+Game quit:
+* Press esc button
 
 ## Project Status
 Project is complete. I currently have no plans to further develop the game, as I have achieved the intended learning outcomes
