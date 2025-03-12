@@ -17,7 +17,7 @@ I created a 2D game in Python, based on the classic Space Invaders. Thanks to th
 Project is created with:
 * Python version: 3.10
 * Pygame version: 2.6.1
-* PyCharm Comunity Edition
+* PyCharm Community Edition
 * Gimp
 
 ## Setup
