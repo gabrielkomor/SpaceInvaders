@@ -1,16 +1,16 @@
 import pygame
 import sys
 from typing import List
-from scripts.playerClass import Player
-from scripts.bulletClass import Bullet
-from scripts.entityClass import *
-from scripts.barClass import *
-from scripts.healthClass import *
-from scripts.loadingCircleClass import *
-from scripts.coinLevelClass import *
-from scripts.explosionClass import *
-from scripts.settingsClass import Settings
-from scripts.startEndDefeatScreen import *
+from scripts.player_class import Player
+from scripts.bullet_class import Bullet
+from scripts.entity_class import *
+from scripts.bar_class import *
+from scripts.health_class import *
+from scripts.loading_circle_class import *
+from scripts.coin_level_class import *
+from scripts.explosion_class import *
+from scripts.settings_class import Settings
+from scripts.start_end_defeat_screen import *
 
 pygame.init()
 
@@ -98,8 +98,8 @@ def level_ten() -> List[Boss]:
 
 
 def main():
-    from scripts.shopClass import Shop
-    from scripts.startEndDefeatScreen import Screens
+    from scripts.shop_class import Shop
+    from scripts.start_end_defeat_screen import Screens
 
     # Set window settings
     clock = 0
@@ -199,7 +199,7 @@ def main():
         # Tick
         if not pause:
             player.tick(keys, bullets, player, bar, mouse_x, mouse_y, left_button, right_button, mouse_state, shot)
-            bar.tick(clock, player)
+            bar.tick(clock)
             loading_circle.tick(clock, bar)
             health_bar.tick()
             if player_cash_temp != Settings.player_cash:
