@@ -4,6 +4,7 @@ import scripts.bar_class as bar
 import scripts.bullet_class as bullet_class
 import scripts.bullet_entity_class as bullet_entity_class
 import scripts.entity_class as entity_class
+import scripts.coin_level_class as coin_level_class
 
 
 @pytest.fixture
@@ -47,3 +48,25 @@ def mock_entity(mock_image, monkeypatch):
 def mock_bullet_entity(mock_entity, monkeypatch, mock_image):
     monkeypatch.setattr('pygame.image.load', lambda path: mock_image)
     return bullet_entity_class.BulletEntity(mock_entity, 5)
+
+
+@pytest.fixture
+def mock_coin(monkeypatch, mock_image):
+    monkeypatch.setattr('pygame.image.load', lambda path: mock_image)
+    mock_font = Mock()
+    mock_font.render.return_value = mock_image
+    monkeypatch.setattr('pygame.font.Font', lambda *args, **kwargs: mock_font)
+    coin = coin_level_class.Coin()
+    coin.font = mock_font
+    return coin
+
+
+@pytest.fixture
+def mock_icon(monkeypatch, mock_image):
+    monkeypatch.setattr('pygame.image.load', lambda path: mock_image)
+    mock_font = Mock()
+    mock_font.render.return_value = mock_image
+    monkeypatch.setattr('pygame.font.Font', lambda *args, **kwargs: mock_font)
+    icon = coin_level_class.Icon()
+    icon.font = mock_font
+    return icon
