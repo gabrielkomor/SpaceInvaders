@@ -3,7 +3,7 @@ from unittest.mock import Mock
 
 
 def test_tick_coin(mock_coin, monkeypatch, mock_image):
-    monkeypatch.setattr('scripts.settings_class.Settings.player_cash', 100)
+    monkeypatch.setattr('src.settings_class.Settings.player_cash', 100)
     mock_coin.tick()
     assert mock_coin.text == mock_image
 
@@ -24,6 +24,6 @@ def test_draw_coin(mock_coin):
 
 
 def test_tick_icon(mock_icon, monkeypatch, mock_image):
-    monkeypatch.setattr('scripts.settings_class.Settings.game_level', 10)
+    monkeypatch.setattr('src.settings_class.Settings.game_level', 10)
     mock_icon.tick()
     assert mock_icon.text == mock_image

@@ -1,16 +1,16 @@
 import pygame
 import sys
 from typing import List
-from scripts.player_class import Player
-from scripts.bullet_class import Bullet
-from scripts.entity_class import *
-from scripts.bar_class import *
-from scripts.health_class import *
-from scripts.loading_circle_class import *
-from scripts.coin_level_class import *
-from scripts.explosion_class import *
-from scripts.settings_class import Settings
-from scripts.start_end_defeat_screen import *
+from src.player_class import Player
+from src.bullet_class import Bullet
+from src.entity_class import *
+from src.bar_class import *
+from src.health_class import *
+from src.loading_circle_class import *
+from src.coin_level_class import *
+from src.explosion_class import *
+from src.settings_class import Settings
+from src.start_end_defeat_screen import *
 
 pygame.init()
 
@@ -98,8 +98,8 @@ def level_ten() -> List[Boss]:
 
 
 def main():
-    from scripts.shop_class import Shop
-    from scripts.start_end_defeat_screen import Screens
+    from src.shop_class import Shop
+    from src.start_end_defeat_screen import Screens
 
     # Set window settings
     clock = 0
@@ -114,12 +114,12 @@ def main():
 
     window = pygame.display.set_mode((window_width, window_height), pygame.SCALED | pygame.FULLSCREEN)
     pygame.display.set_caption('Space invaders')
-    background = pygame.image.load('background/background.jpeg', '../').convert_alpha()
-    icon = pygame.image.load('icon/icon.png', '../').convert_alpha()
-    start_stop_icon = pygame.image.load('icon/playStop.png', '../').convert_alpha()
-    bullet_icon = pygame.image.load('icon/bulletIcon.png', '../').convert_alpha()
-    left_arrow = pygame.image.load('icon/leftArrow.png', '../').convert_alpha()
-    right_arrow = pygame.image.load('icon/rightArrow.png', '../').convert_alpha()
+    background = pygame.image.load('assets/background/background.jpeg', '../').convert_alpha()
+    icon = pygame.image.load('assets/icon/icon.png', '../').convert_alpha()
+    start_stop_icon = pygame.image.load('assets/icon/playStop.png', '../').convert_alpha()
+    bullet_icon = pygame.image.load('assets/icon/bulletIcon.png', '../').convert_alpha()
+    left_arrow = pygame.image.load('assets/icon/leftArrow.png', '../').convert_alpha()
+    right_arrow = pygame.image.load('assets/icon/rightArrow.png', '../').convert_alpha()
     pygame.display.set_icon(icon)
 
     # Instances

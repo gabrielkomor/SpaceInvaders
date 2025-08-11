@@ -4,20 +4,20 @@ from unittest.mock import Mock
 
 @pytest.mark.parametrize('tick_val, player_reload, result', [(4, 2, 2), (1, 1, 1), (5, 2, 2.5), (3, 6, 0.5)])
 def test_tick(monkeypatch, mock_loading_bar, tick_val, player_reload, result):
-    monkeypatch.setattr('scripts.settings_class.Settings.player_reload_time', player_reload)
+    monkeypatch.setattr('src.settings_class.Settings.player_reload_time', player_reload)
     mock_loading_bar.tick(tick_val)
     assert mock_loading_bar.loading == result
 
 
 def test_tick_divide_by_zero(monkeypatch, mock_loading_bar):
-    monkeypatch.setattr('scripts.settings_class.Settings.player_reload_time', 0)
+    monkeypatch.setattr('src.settings_class.Settings.player_reload_time', 0)
     with pytest.raises(ZeroDivisionError):
         mock_loading_bar.tick(5)
 
 
 @pytest.mark.parametrize('loading, tick_val, result', [(1, 2, 3), (2.3, 1, 3)])
 def test_tick_chose(monkeypatch, mock_loading_bar, loading, tick_val, result):
-    monkeypatch.setattr('scripts.settings_class.Settings.player_reload_time', 1)
+    monkeypatch.setattr('src.settings_class.Settings.player_reload_time', 1)
     mock_loading_bar.loading = loading
     mock_loading_bar.tick(tick_val)
     assert mock_loading_bar.chose_image == result

@@ -24,7 +24,7 @@ def test_tick_remove_bullet(mock_bullet):
 def test_tick_move_and_hit_box(monkeypatch, mock_bullet, value, result):
     x_cord, y_cord = mock_bullet.x_cord, mock_bullet.y_cord
     width, height = mock_bullet.width, mock_bullet.height
-    monkeypatch.setattr('scripts.settings_class.Settings.player_bullet_speed', value)
+    monkeypatch.setattr('src.settings_class.Settings.player_bullet_speed', value)
     run_bullet_tick(mock_bullet)
     assert mock_bullet.y_cord == result
     hit_box = mock_bullet.hit_box

@@ -20,7 +20,7 @@ def test_remove_entity(mock_bullet_entity, mock_player, monkeypatch):
     explosions = []
     mock_bullet_entity.y_cord = 200
     mock_bullet_entity.height = 10
-    monkeypatch.setattr('scripts.settings_class.Settings.window_height', 250)
+    monkeypatch.setattr('src.settings_class.Settings.window_height', 250)
     mock_bullet_entity.tick(mock_bullet_entity, entity_bullets, mock_player, explosions)
     assert mock_bullet_entity not in entity_bullets
 

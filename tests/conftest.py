@@ -1,10 +1,10 @@
 import pytest
 from unittest.mock import Mock
-import scripts.bar_class as bar
-import scripts.bullet_class as bullet_class
-import scripts.bullet_entity_class as bullet_entity_class
-import scripts.entity_class as entity_class
-import scripts.coin_level_class as coin_level_class
+import src.bar_class as bar
+import src.bullet_class as bullet_class
+import src.bullet_entity_class as bullet_entity_class
+import src.entity_class as entity_class
+import src.coin_level_class as coin_level_class
 
 
 @pytest.fixture
