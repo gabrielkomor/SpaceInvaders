@@ -1,10 +1,15 @@
-import pygame as pg
 from math import floor
+
+import pygame as pg
+
 from src.settings_class import Settings
 
 
-# Class is responsible for creating a bar that corresponds to the player's reload level
 class LoadingBar:
+    """
+    Class is responsible for creating a bar that corresponds to the player's reload level
+    """
+
     def __init__(self):
         self.image = [pg.image.load(f'assets/bar/loading_bar_{x}_3.png').convert_alpha() for x in range(0, 4)]
         self.x_cord = 60
@@ -35,11 +40,11 @@ class LoadingBar:
                 case 3:
                     self.chose_image = 3
 
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
         """
         Method draws the appropriate reload image on the screen
         :param window:
-        :return:
+        :return: None
         """
         try:
             window.blit(self.image[self.chose_image], (self.x_cord, self.y_cord))

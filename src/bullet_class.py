@@ -1,32 +1,45 @@
 from __future__ import annotations
-import pygame
+from typing import List
+
+import pygame as pg
+
 from src.player_class import *
 from src.explosion_class import *
 from src.coin_level_class import *
 from src.settings_class import Settings
 from src.bullet_entity_class import BulletEntity
-from typing import List
 
 
-# Class is responsible for creating the player's projectile and operating its mechanics
 class Bullet:
+    """
+    Class is responsible for creating the player's projectile and operating its mechanics
+    """
+
     def __init__(self, player: Player):
-        self.image = pygame.image.load('assets/bullet/bullet.png').convert_alpha()
+        self.image = pg.image.load('assets/bullet/bullet.png').convert_alpha()
         self.player = player
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.x_cord = self.player.x_cord + self.player.width // 2 - self.width // 2
         self.y_cord = self.player.y_cord
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    # Method removes the projectile if it goes beyond the map boundaries,
-    # and also checks whether there has been a collision with another object,
-    # in which case it generates an explosion, the absorption parameter disables receiving damage to the opponent
     def tick(self, bullet: Bullet, bullets: List[Bullet], entities: List[Entity], entity_bullets: List[BulletEntity],
              explosions: List[Explosion]) -> None:
+        """
+        Method removes the projectile if it goes beyond the map boundaries,
+        and also checks whether there has been a collision with another object,
+        in which case it generates an explosion, the absorption parameter disables receiving damage to the opponent
+        :param bullet:
+        :param bullets:
+        :param entities:
+        :param entity_bullets:
+        :param explosions:
+        :return: None
+        """
 
         self.y_cord -= Settings.player_bullet_speed
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
         if self.y_cord <= 0:
             bullets.remove(bullet)
@@ -67,6 +80,10 @@ class Bullet:
                     entity_bullets.remove(entity_bullet)
                     Settings.player_cash += 1
 
-    # Method draws bullets on the screen
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
+        """
+        Method draws bullets on the screen
+        :param window:
+        :return: None
+        """
         window.blit(self.image, (self.x_cord, self.y_cord))

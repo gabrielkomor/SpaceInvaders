@@ -1,18 +1,23 @@
 from __future__ import annotations
-import pygame
+from typing import List
 from random import randint
+
+import pygame as pg
+
 from src.explosion_class import Explosion
 from src.settings_class import Settings
-from typing import List
 
 WINDOW_HEIGHT = Settings.window_height
-window_width = Settings.window_width
+WINDOW_WIDTH = Settings.window_width
 
 
-# Class is responsible for creating the enemy's projectile
 class BulletEntity:
+    """
+    Class is responsible for creating the enemy's projectile
+    """
+
     def __init__(self, entity, displacement: int):
-        self.image = pygame.image.load('assets/bullet/entity_bullet1.png').convert_alpha()
+        self.image = pg.image.load('assets/bullet/entity_bullet1.png').convert_alpha()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.id = 1
@@ -23,13 +28,19 @@ class BulletEntity:
         self.displacement = displacement
         self.x_cord = self.entity.x_cord + self.entity.width // 2 - self.width // 2 + self.displacement
         self.y_cord = self.entity.y_cord + self.entity.height // 1.1
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    # Method moves the projectile, removes it upon collision,
-    # generates explosions and subtracts health points when it collides with the player
     def tick(self, entity_bullet: BulletEntity, entity_bullets: List[BulletEntity], player,
              explosions: List[Explosion]) -> None:
-
+        """
+        Method moves the projectile, removes it upon collision,
+        generates explosions and subtracts health points when it collides with the player
+        :param entity_bullet:
+        :param entity_bullets:
+        :param player:
+        :param explosions:
+        :return: None
+        """
         if self.counter <= 2:
             self.x_cord += self.speed
         elif 2 < self.counter <= 4:
@@ -46,7 +57,7 @@ class BulletEntity:
 
         if self.y_cord > WINDOW_HEIGHT - 210 - self.height:
             entity_bullets.remove(entity_bullet)
-        if self.x_cord + self.width > window_width:
+        if self.x_cord + self.width > WINDOW_WIDTH:
             self.x_cord -= self.speed
         if self.x_cord < 0:
             self.x_cord += self.speed
@@ -62,17 +73,21 @@ class BulletEntity:
                 elif entity_bullet.id == 3:
                     Settings.player_health -= 3
 
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    # Method draws a bullet on the screen
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
+        """
+        Method is responsible for drawing entity bullet on display
+        :param window:
+        :return: None
+        """
         window.blit(self.image, (self.x_cord, self.y_cord))
 
 
 class BulletEntityTwo(BulletEntity):
     def __init__(self, entity, displacement: int):
         super().__init__(entity, displacement)
-        self.image = pygame.image.load('assets/bullet/entity_bullet2.png').convert_alpha()
+        self.image = pg.image.load('assets/bullet/entity_bullet2.png').convert_alpha()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.id = 2
@@ -82,7 +97,7 @@ class BulletEntityTwo(BulletEntity):
         self.bullet_mode = randint(1, 3)
         self.x_cord = self.entity.x_cord + self.entity.width // 2 - self.width // 2 + self.displacement
         self.y_cord = self.entity.y_cord + self.entity.height // 1.1
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
     def tick(self, entity_bullet: BulletEntity, entity_bullets: List[BulletEntity], player,
              explosions: List[Explosion]) -> None:
@@ -128,7 +143,7 @@ class BulletEntityTwo(BulletEntity):
 
         if self.y_cord > WINDOW_HEIGHT - 210 - self.height:
             entity_bullets.remove(entity_bullet)
-        if self.x_cord + self.width > window_width:
+        if self.x_cord + self.width > WINDOW_WIDTH:
             self.x_cord -= self.speed
         if self.x_cord < 0:
             self.x_cord += self.speed
@@ -144,13 +159,13 @@ class BulletEntityTwo(BulletEntity):
                 elif entity_bullet.id == 3:
                     Settings.player_health -= 3
 
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
 
 class BulletEntityThree(BulletEntity):
     def __init__(self, entity, displacement: int):
         super().__init__(entity, displacement)
-        self.image = pygame.image.load('assets/bullet/entity_bullet3.png').convert_alpha()
+        self.image = pg.image.load('assets/bullet/entity_bullet3.png').convert_alpha()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.id = 3
@@ -159,7 +174,7 @@ class BulletEntityThree(BulletEntity):
         self.drawing_speed = 0.15
         self.x_cord = self.entity.x_cord + self.entity.width // 2 - self.width // 2 + self.displacement
         self.y_cord = self.entity.y_cord + self.entity.height // 1.1
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
     def tick(self, entity_bullet: BulletEntity, entity_bullets: List[BulletEntity], player,
              explosions: List[Explosion]) -> None:
@@ -180,7 +195,7 @@ class BulletEntityThree(BulletEntity):
 
         if self.y_cord > WINDOW_HEIGHT - 210 - self.height:
             entity_bullets.remove(entity_bullet)
-        if self.x_cord + self.width > window_width:
+        if self.x_cord + self.width > WINDOW_WIDTH:
             self.x_cord -= self.speed
         if self.x_cord < 0:
             self.x_cord += self.speed
@@ -196,4 +211,4 @@ class BulletEntityThree(BulletEntity):
                 elif entity_bullet.id == 3:
                     Settings.player_health -= 3
 
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)

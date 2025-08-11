@@ -1,18 +1,28 @@
-import pygame
+import pygame as pg
+
 from src.bar_class import LoadingBar
 
 
-# Class is responsible for drawing and animating the circular reload bar when the player is loading
 class LoadingCircle:
+    """
+    Class is responsible for drawing and animating the circular reload bar when the player is loading
+    """
+
     def __init__(self):
-        self.image = [pygame.image.load(f'assets/loadingCircle/loading_circle_{x}_8.png').convert_alpha() for x in range(0, 9)]
+        self.image = [pg.image.load(f'assets/loadingCircle/loading_circle_{x}_8.png').convert_alpha() for x in
+                      range(0, 9)]
         self.x_cord = 10
         self.y_cord = 880
         self.counter = 0
         self.choose_image = 0
 
-    # Method selects the appropriate graphics based on the state of the game clock and the reload bar
     def tick(self, clock: float, bar: LoadingBar) -> None:
+        """
+        Method selects the appropriate graphics based on the state of the game clock and the reload bar
+        :param clock:
+        :param bar:
+        :return: None
+        """
         if bar.loading >= 3:
             self.counter += clock
             if self.counter > 10:
@@ -40,8 +50,12 @@ class LoadingCircle:
             elif 1.75 < clock <= 2:
                 self.choose_image = 8
 
-    # Method draws a circular reload bar on the screen has protection against unforeseen errors
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
+        """
+        Method draws a circular reload bar on the screen has protection against unforeseen errors
+        :param window:
+        :return: None
+        """
         try:
             window.blit(self.image[self.choose_image], (self.x_cord, self.y_cord))
         except Exception as error:

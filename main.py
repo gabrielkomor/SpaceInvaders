@@ -1,6 +1,7 @@
-import pygame
-import sys
 from typing import List
+
+import pygame as pg
+
 from src.player_class import Player
 from src.bullet_class import Bullet
 from src.entity_class import *
@@ -12,7 +13,7 @@ from src.explosion_class import *
 from src.settings_class import Settings
 from src.start_end_defeat_screen import *
 
-pygame.init()
+pg.init()
 
 
 def level_one() -> List[Entity]:
@@ -112,15 +113,15 @@ def main():
     player_cash_temp = 0
     game_level_temp = 0
 
-    window = pygame.display.set_mode((window_width, window_height), pygame.SCALED | pygame.FULLSCREEN)
-    pygame.display.set_caption('Space invaders')
-    background = pygame.image.load('assets/background/background.jpeg', '../').convert_alpha()
-    icon = pygame.image.load('assets/icon/icon.png', '../').convert_alpha()
-    start_stop_icon = pygame.image.load('assets/icon/playStop.png', '../').convert_alpha()
-    bullet_icon = pygame.image.load('assets/icon/bulletIcon.png', '../').convert_alpha()
-    left_arrow = pygame.image.load('assets/icon/leftArrow.png', '../').convert_alpha()
-    right_arrow = pygame.image.load('assets/icon/rightArrow.png', '../').convert_alpha()
-    pygame.display.set_icon(icon)
+    window = pg.display.set_mode((WINDOW_WIDTH, window_height), pg.SCALED | pg.FULLSCREEN)
+    pg.display.set_caption('Space invaders')
+    background = pg.image.load('assets/background/background.jpeg', '../').convert_alpha()
+    icon = pg.image.load('assets/icon/icon.png', '../').convert_alpha()
+    start_stop_icon = pg.image.load('assets/icon/playStop.png', '../').convert_alpha()
+    bullet_icon = pg.image.load('assets/icon/bulletIcon.png', '../').convert_alpha()
+    left_arrow = pg.image.load('assets/icon/leftArrow.png', '../').convert_alpha()
+    right_arrow = pg.image.load('assets/icon/rightArrow.png', '../').convert_alpha()
+    pg.display.set_icon(icon)
 
     # Instances
     health_bar = HealthBar()
@@ -162,37 +163,37 @@ def main():
 
     # Main game loop
     while True:
-        left_button = pygame.Rect(10, 950, 190, 120)
-        right_button = pygame.Rect(window_width - 200, 950, 190, 120)
-        shot_button = pygame.Rect(220, 950, 120, 120)
-        pause_button = pygame.Rect(360, 950, 120, 120)
+        left_button = pg.Rect(10, 950, 190, 120)
+        right_button = pg.Rect(WINDOW_WIDTH - 200, 950, 190, 120)
+        shot_button = pg.Rect(220, 950, 120, 120)
+        pause_button = pg.Rect(360, 950, 120, 120)
 
         # Game events (keys)
-        keys = pygame.key.get_pressed()
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        mouse_state = pygame.mouse.get_pressed()[0]
+        keys = pg.key.get_pressed()
+        mouse_x, mouse_y = pg.mouse.get_pos()
+        mouse_state = pg.mouse.get_pressed()[0]
 
         # Check for event
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pg.MOUSEBUTTONDOWN:
                 if pause_button.collidepoint(mouse_x, mouse_y):
                     pause = not pause
                 if shot_button.collidepoint(mouse_x, mouse_y):
                     shot = not shot
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_ESCAPE:
+                    pg.quit()
                     sys.exit()
-                if event.key == pygame.K_p:
+                if event.key == pg.K_p:
                     pause = not pause
-                if event.key == pygame.K_SPACE:
+                if event.key == pg.K_SPACE:
                     shot = not shot
 
         # Game clock
-        clock += pygame.time.Clock().tick(60) / 350
+        clock += pg.time.Clock().tick(60) / 350
         if clock > 2:
             clock = 0
 
@@ -221,33 +222,33 @@ def main():
         # Draw
         window.fill((100, 100, 100))
         window.blit(background, (0, 0))
-        pygame.draw.rect(window, (120, 120, 120), (0, 870, window_width, 210))
-        pygame.draw.rect(window, (0, 0, 0), (0, 930, window_width, 10))
+        pg.draw.rect(window, (120, 120, 120), (0, 870, WINDOW_WIDTH, 210))
+        pg.draw.rect(window, (0, 0, 0), (0, 930, WINDOW_WIDTH, 10))
 
         if shot:
-            pygame.draw.rect(window, active, (220, 950, 120, 120))
+            pg.draw.rect(window, active, (220, 950, 120, 120))
         else:
-            pygame.draw.rect(window, inactive, (220, 950, 120, 120))
+            pg.draw.rect(window, inactive, (220, 950, 120, 120))
 
-        if (left_button.collidepoint(mouse_x, mouse_y) and mouse_state) or keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            pygame.draw.rect(window, active, (10, 950, 190, 120))
+        if (left_button.collidepoint(mouse_x, mouse_y) and mouse_state) or keys[pg.K_LEFT] or keys[pg.K_a]:
+            pg.draw.rect(window, active, (10, 950, 190, 120))
         else:
-            pygame.draw.rect(window, inactive, (10, 950, 190, 120))
+            pg.draw.rect(window, inactive, (10, 950, 190, 120))
 
-        if (right_button.collidepoint(mouse_x, mouse_y) and mouse_state) or keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            pygame.draw.rect(window, active, (window_width - 200, 950, 190, 120))
+        if (right_button.collidepoint(mouse_x, mouse_y) and mouse_state) or keys[pg.K_RIGHT] or keys[pg.K_d]:
+            pg.draw.rect(window, active, (WINDOW_WIDTH - 200, 950, 190, 120))
         else:
-            pygame.draw.rect(window, inactive, (window_width - 200, 950, 190, 120))
+            pg.draw.rect(window, inactive, (WINDOW_WIDTH - 200, 950, 190, 120))
 
         if pause:
-            pygame.draw.rect(window, active, (360, 950, 120, 120))
+            pg.draw.rect(window, active, (360, 950, 120, 120))
         else:
-            pygame.draw.rect(window, inactive, (360, 950, 120, 120))
+            pg.draw.rect(window, inactive, (360, 950, 120, 120))
 
         window.blit(start_stop_icon, (360, 950))
         window.blit(bullet_icon, (220, 950))
         window.blit(left_arrow, (10, 950))
-        window.blit(right_arrow, (window_width - 200, 950))
+        window.blit(right_arrow, (WINDOW_WIDTH - 200, 950))
 
         player.draw(window, clock)
         bar.draw(window)
@@ -264,7 +265,7 @@ def main():
             entityBullet.draw(window)
         for explosion in explosions:
             explosion.draw(window)
-        pygame.display.update()
+        pg.display.update()
 
         # Instruction is responsible for checking whether the player still has any health points
         if Settings.player_health < 0:

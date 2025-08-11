@@ -1,5 +1,6 @@
-from main import *
 import time
+
+from main import *
 from src.start_end_defeat_screen import Screens
 from src.settings_class import Settings
 
@@ -25,7 +26,7 @@ class Shop:
         player_level_4 = pygame.image.load('assets/player/level_4/rocketStatic_1_Lvl_4.png').convert_alpha()
 
         # Game window setting
-        window = pygame.display.set_mode((window_width, WINDOW_HEIGHT), pygame.SCALED | pygame.FULLSCREEN)
+        window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), pygame.SCALED | pygame.FULLSCREEN)
         pygame.display.set_caption('Space invaders')
         pygame.display.set_icon(icon)
 

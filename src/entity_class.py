@@ -1,21 +1,25 @@
 from __future__ import annotations
-import pygame
-import random
+from random import randint
 from typing import List
+
+import pygame as pg
+
 from src.bullet_entity_class import *
 from src.explosion_class import *
 from src.coin_level_class import *
 from src.settings_class import Settings
 
 
-# Entity class creates an enemy in the game, it has its initial parameters, which change during the game
 class Entity:
+    """
+    Entity class creates an enemy in the game, it has its initial parameters, which change during the game
+    """
     direction = True
     window_width = Settings.window_width
 
     def __init__(self, x_cord: int, y_cord: int):
-        self.image = [pygame.image.load(f'assets/entity1/ufo_{x}_7.png').convert_alpha() for x in range(0, 8)]
-        self.health_image = pygame.image.load('assets/entity1/loading_bar_1_2.png').convert_alpha()
+        self.image = [pg.image.load(f'assets/entity1/ufo_{x}_7.png').convert_alpha() for x in range(0, 8)]
+        self.health_image = pg.image.load('assets/entity1/loading_bar_1_2.png').convert_alpha()
         self.x_cord = x_cord
         self.y_cord = y_cord
         self.draw_speed = 0.1
@@ -27,11 +31,17 @@ class Entity:
         self.chose_image = 0
         self.health = 2
         self.absorption = False
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    # Method is responsible for creating new enemy projectiles,
-    # removes the opponent from the board, increases the player's account balance and moves the object
     def tick(self, entity_bullets: List[BulletEntity], entity: Entity, entities: List[Entity]) -> None:
+        """
+        Method is responsible for creating new enemy projectiles,
+        removes the opponent from the board, increases the player's account balance and moves the object
+        :param entity_bullets:
+        :param entity:
+        :param entities:
+        :return: None
+        """
         self.bullet_counter += self.draw_bullet_speed
 
         if floor(self.bullet_counter) == 12:
@@ -52,10 +62,14 @@ class Entity:
         else:
             self.x_cord -= 1
 
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    # Method is responsible for drawing the appropriate animation frame on the screen, and also draws a health bar
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
+        """
+        Method is responsible for drawing the appropriate animation frame on the screen, and also draws a health bar
+        :param window:
+        :return: None
+        """
         self.counter += self.draw_speed
         if self.counter > 8:
             self.counter = 0
@@ -81,9 +95,9 @@ class Entity:
 class EntityTwo(Entity):
     def __init__(self, x_cord: int, y_cord: int):
         super().__init__(x_cord, y_cord)
-        self.image = [pygame.image.load(f'assets/entity2/ufo2_{x}_7.png').convert_alpha() for x in range(0, 8)]
-        self.health_image_low = pygame.image.load('assets/entity2/health_bar_0_1.png').convert_alpha()
-        self.health_image_choose = self.health_image_medium = (pygame.image.load('assets/entity2/health_bar_1_1.png').
+        self.image = [pg.image.load(f'assets/entity2/ufo2_{x}_7.png').convert_alpha() for x in range(0, 8)]
+        self.health_image_low = pg.image.load('assets/entity2/health_bar_0_1.png').convert_alpha()
+        self.health_image_choose = self.health_image_medium = (pg.image.load('assets/entity2/health_bar_1_1.png').
                                                                convert_alpha())
         self.draw_speed = 0.1
         self.counter = 0
@@ -94,7 +108,7 @@ class EntityTwo(Entity):
         self.chose_image = 0
         self.health = 3
         self.absorption = False
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
     def tick(self, entity_bullets: List[BulletEntityTwo], entity: EntityTwo, entities: List[EntityTwo]) -> None:
         self.bullet_counter += self.draw_bullet_speed
@@ -117,9 +131,9 @@ class EntityTwo(Entity):
         else:
             self.x_cord -= 1
 
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
         self.counter += self.draw_speed
         if self.counter > 8:
             self.counter = 0
@@ -151,8 +165,8 @@ class EntityTwo(Entity):
 class EntityThree(Entity):
     def __init__(self, x_cord: int, y_cord: int):
         super().__init__(x_cord, y_cord)
-        self.image = [pygame.image.load(f'assets/entity3/ufo3_{x}_7.png').convert_alpha() for x in range(0, 8)]
-        self.health_image = [pygame.image.load(f'assets/entity3/health_{x}_2.png').convert_alpha() for x in range(0, 3)]
+        self.image = [pg.image.load(f'assets/entity3/ufo3_{x}_7.png').convert_alpha() for x in range(0, 8)]
+        self.health_image = [pg.image.load(f'assets/entity3/health_{x}_2.png').convert_alpha() for x in range(0, 3)]
         self.health_image_choose = self.health_image[0]
         self.draw_speed = 0.1
         self.counter = 0
@@ -163,7 +177,7 @@ class EntityThree(Entity):
         self.chose_image = 0
         self.health = 4
         self.absorption = False
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
     def tick(self, entity_bullets: List[BulletEntityThree], entity: EntityThree, entities: List[EntityThree]) -> None:
         self.bullet_counter += self.draw_bullet_speed
@@ -186,9 +200,9 @@ class EntityThree(Entity):
         else:
             self.x_cord -= 1
 
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
         self.counter += self.draw_speed
         if self.counter > 8:
             self.counter = 0
@@ -221,12 +235,16 @@ class EntityThree(Entity):
             window.blit(self.image[0], (self.x_cord, self.y_cord))
 
 
-# Class is responsible for creating the boss,
-# it has unique mechanics that are activated during the fight with him (absorption, creation of enemies, random shots)
 class Boss:
+    """
+    Class is responsible for creating the boss,
+    it has unique mechanics that are activated during the fight with him (absorption, creation of enemies, random shots)
+    """
+
     def __init__(self):
-        self.image = [pygame.image.load(f'assets/boss/boss_{x}.png').convert_alpha() for x in range(0, 6)]
-        self.health_image = [pygame.image.load(f'assets/boss/boss_health_{x}.png').convert_alpha() for x in range(0, 18)]
+        self.image = [pg.image.load(f'assets/boss/boss_{x}.png').convert_alpha() for x in range(0, 6)]
+        self.health_image = [pg.image.load(f'assets/boss/boss_health_{x}.png').convert_alpha() for x in
+                             range(0, 18)]
         self.x_cord = 300
         self.y_cord = 100
         self.start_position = 300
@@ -244,17 +262,23 @@ class Boss:
         self.stage_2 = True
         self.stage_3 = True
         self.absorption = False
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    # Method works analogously to the tick method of the above classes however, it has some mechanics such as:
-    # when the boss reaches a specific health value, he returns to his starting position,
-    # becomes insensitive to damage dealt to it, stops shooting and creates additional enemies
-    # this state lasts until the player destroys the created enemies, then the boss returns to its original mechanics
     def tick(self, entity_bullets: List[BulletEntity], entity: Entity, entities: List[Entity]) -> None:
+        """
+        Method works analogously to the tick method of the above classes however, it has some mechanics such as:
+        when the boss reaches a specific health value, he returns to his starting position,
+        becomes insensitive to damage dealt to it, stops shooting and creates additional enemies
+        this state lasts until the player destroys the created enemies, then the boss returns to its original mechanics
+        :param entity_bullets:
+        :param entity:
+        :param entities:
+        :return: None
+        """
         self.bullet_counter += self.draw_bullet_speed
 
         if floor(self.bullet_counter) == 12:
-            entity_bullet_choose = random.randint(0, 100)
+            entity_bullet_choose = randint(0, 100)
 
             if entity_bullet_choose < 25:
                 entity_bullets.append(BulletEntity(entity, 0))
@@ -272,7 +296,7 @@ class Boss:
             entities.remove(entity)
             Settings.player_cash += 300
 
-        if self.x_cord > window_width - self.width:
+        if self.x_cord > WINDOW_WIDTH - self.width:
             self.direction = False
         if self.x_cord < 0:
             self.direction = True
@@ -312,9 +336,9 @@ class Boss:
             self.absorption = False
             self.speed = 1
 
-        self.hit_box = pygame.Rect(self.x_cord, self.y_cord, self.width, self.height)
+        self.hit_box = pg.Rect(self.x_cord, self.y_cord, self.width, self.height)
 
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
         self.counter += self.draw_speed
         if self.counter > 6:
             self.counter = 0

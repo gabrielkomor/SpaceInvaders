@@ -1,14 +1,19 @@
 from __future__ import annotations
-import pygame
 from typing import List
 from math import floor
 
+import pygame as pg
 
-# Class is responsible for creating an explosion object, which disappears after its animation
+
 class Explosion:
+    """
+    Class is responsible for creating an explosion object, which disappears after its animation
+    """
+
     def __init__(self, x_cord: int, y_cord: int, choose_explosion: int):
-        self.image = [pygame.image.load(f'assets/explosion/explosion_{x}_6.png').convert_alpha() for x in range(0, 7)]
-        self.big_image = [pygame.image.load(f'assets/explosion/big_explosion_{x}_6.png').convert_alpha() for x in range(0, 7)]
+        self.image = [pg.image.load(f'assets/explosion/explosion_{x}_6.png').convert_alpha() for x in range(0, 7)]
+        self.big_image = [pg.image.load(f'assets/explosion/big_explosion_{x}_6.png').convert_alpha() for x in
+                          range(0, 7)]
         self.x_cord = x_cord
         self.y_cord = y_cord
         self.choose_image = 0
@@ -16,8 +21,13 @@ class Explosion:
         self.drawing_speed = 0.3
         self.choose_explosion = choose_explosion
 
-    # Method selects appropriate graphics based on the game counter and removes explosions
     def tick(self, explosions: List[Explosion], explosion: Explosion) -> None:
+        """
+        Method selects appropriate graphics based on the game counter and removes explosions
+        :param explosions:
+        :param explosion:
+        :return: None
+        """
         self.counter += self.drawing_speed
 
         counter_floor = floor(self.counter)
@@ -42,8 +52,12 @@ class Explosion:
             self.counter = 0
             explosions.remove(explosion)
 
-    # Method draws graphics based on the given parameters
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, window: pg.Surface) -> None:
+        """
+        Method draws graphics based on the given parameters
+        :param window:
+        :return: None
+        """
         if self.choose_explosion == 1:
             window.blit(self.image[self.choose_image], (self.x_cord, self.y_cord))
         elif self.choose_explosion == 2:
