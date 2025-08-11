@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "spaceinvaders"
+version = "0.1.0"
+description = ""
+authors = ["Gabriel Komor <gabkomti@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+colorama = "0.4.6"
+iniconfig = "2.1.0"
+packaging = "25.0"
+pluggy = "1.6.0"
+pygame = "2.6.1"
+pygments = "2.19.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
