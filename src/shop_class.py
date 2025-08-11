@@ -9,26 +9,26 @@ class Shop:
     # Method invokes the store window after the level is completed
     @staticmethod
     def shop() -> None:
-        background = pygame.image.load('assets/background/background.jpeg').convert_alpha()
-        icon = pygame.image.load('assets/icon/icon.png').convert_alpha()
-        add_bullet_speed = pygame.image.load('assets/shopIcons/addBulletSpeed.png').convert_alpha()
-        add_player_health = pygame.image.load('assets/shopIcons/addHealth.png').convert_alpha()
-        add_reload_speed = pygame.image.load('assets/shopIcons/addReloadSpeed.png').convert_alpha()
-        add_player_speed = pygame.image.load('assets/shopIcons/addSpeed.png').convert_alpha()
-        gear_image = pygame.image.load('assets/shopIcons/gear.png').convert_alpha()
-        cash_icon = pygame.image.load('assets/shopIcons/dollar.png').convert_alpha()
-        no_icon = pygame.image.load('assets/shopIcons/no.png').convert_alpha()
-        yes_icon = pygame.image.load('assets/shopIcons/yes.png').convert_alpha()
-        exit_icon = pygame.image.load('assets/shopIcons/door.png').convert_alpha()
-        player_level_1 = pygame.image.load('assets/player/level_1/rocketStatic_1_Lvl_1.png').convert_alpha()
-        player_level_2 = pygame.image.load('assets/player/level_2/rocketStatic_1_Lvl_2.png').convert_alpha()
-        player_level_3 = pygame.image.load('assets/player/level_3/rocketStatic_1_Lvl_3.png').convert_alpha()
-        player_level_4 = pygame.image.load('assets/player/level_4/rocketStatic_1_Lvl_4.png').convert_alpha()
+        background = pg.image.load('assets/background/background.jpeg').convert_alpha()
+        icon = pg.image.load('assets/icon/icon.png').convert_alpha()
+        add_bullet_speed = pg.image.load('assets/shopIcons/addBulletSpeed.png').convert_alpha()
+        add_player_health = pg.image.load('assets/shopIcons/addHealth.png').convert_alpha()
+        add_reload_speed = pg.image.load('assets/shopIcons/addReloadSpeed.png').convert_alpha()
+        add_player_speed = pg.image.load('assets/shopIcons/addSpeed.png').convert_alpha()
+        gear_image = pg.image.load('assets/shopIcons/gear.png').convert_alpha()
+        cash_icon = pg.image.load('assets/shopIcons/dollar.png').convert_alpha()
+        no_icon = pg.image.load('assets/shopIcons/no.png').convert_alpha()
+        yes_icon = pg.image.load('assets/shopIcons/yes.png').convert_alpha()
+        exit_icon = pg.image.load('assets/shopIcons/door.png').convert_alpha()
+        player_level_1 = pg.image.load('assets/player/level_1/rocketStatic_1_Lvl_1.png').convert_alpha()
+        player_level_2 = pg.image.load('assets/player/level_2/rocketStatic_1_Lvl_2.png').convert_alpha()
+        player_level_3 = pg.image.load('assets/player/level_3/rocketStatic_1_Lvl_3.png').convert_alpha()
+        player_level_4 = pg.image.load('assets/player/level_4/rocketStatic_1_Lvl_4.png').convert_alpha()
 
         # Game window setting
-        window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), pygame.SCALED | pygame.FULLSCREEN)
-        pygame.display.set_caption('Space invaders')
-        pygame.display.set_icon(icon)
+        window = pg.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), pg.SCALED | pg.FULLSCREEN)
+        pg.display.set_caption('Space invaders')
+        pg.display.set_icon(icon)
 
         # Setting colors, fonts, upgrade prices and displayed texts
         black = (0, 0, 0)
@@ -38,8 +38,8 @@ class Shop:
         player_speed_upgrade_cost = 50
         player_reload_upgrade_cost = 80
         player_health_upgrade_cost = 120
-        font = pygame.font.Font(None, 75)
-        font_shop = pygame.font.Font(None, 125)
+        font = pg.font.Font(None, 75)
+        font_shop = pg.font.Font(None, 125)
         shop_text = font_shop.render('Shop', True, black)
         bullet_speed_cost = font.render(f'{bullet_speed_upgrade_cost}$', True, black)
         player_speed_cost = font.render(f'{player_speed_upgrade_cost}$', True, black)
@@ -73,18 +73,18 @@ class Shop:
         ]
 
         # Setting collisions for buttons that can be controlled in the store
-        add_bullet_speed_hit_box = pygame.Rect(360, 330, 64, 64)
-        add_player_speed_hit_box = pygame.Rect(360, 430, 64, 64)
-        add_reload_speed_hit_box = pygame.Rect(360, 530, 64, 64)
-        add_player_health_hit_box = pygame.Rect(360, 630, 64, 64)
-        exit_icon_hit_box = pygame.Rect(550, 930, 128, 128)
+        add_bullet_speed_hit_box = pg.Rect(360, 330, 64, 64)
+        add_player_speed_hit_box = pg.Rect(360, 430, 64, 64)
+        add_reload_speed_hit_box = pg.Rect(360, 530, 64, 64)
+        add_player_health_hit_box = pg.Rect(360, 630, 64, 64)
+        exit_icon_hit_box = pg.Rect(550, 930, 128, 128)
 
         # Loading screen
         Screens.loading()
 
         while True:
-            mouse_xy = pygame.mouse.get_pos()
-            mouse_state = pygame.mouse.get_pressed()[0]
+            mouse_xy = pg.mouse.get_pos()
+            mouse_state = pg.mouse.get_pressed()[0]
 
             # Setting the values of variables that change with integration with the program
             player_cash_text = font.render(f': {Settings.player_cash}$', True, black)
@@ -114,32 +114,32 @@ class Shop:
 
             # Drawing store elements on the screen
             window.blit(background, (0, 0))
-            pygame.draw.rect(window, grey, (50, 50, 600, 150))
-            pygame.draw.rect(window, grey, (50, 250, 600, 600))
+            pg.draw.rect(window, grey, (50, 50, 600, 150))
+            pg.draw.rect(window, grey, (50, 250, 600, 600))
 
             Settings.all_player_upgrades = (Settings.player_speed_upgrade +
                                             Settings.player_bullet_speed_upgrade +
                                             Settings.player_reload_time_upgrade)
 
             if 0 <= Settings.all_player_upgrades < 3:
-                pygame.draw.rect(window, green, (50, 900, 110, 110))
+                pg.draw.rect(window, green, (50, 900, 110, 110))
             else:
-                pygame.draw.rect(window, grey, (50, 900, 110, 110))
+                pg.draw.rect(window, grey, (50, 900, 110, 110))
 
             if 3 <= Settings.all_player_upgrades < 6:
-                pygame.draw.rect(window, green, (170, 900, 110, 110))
+                pg.draw.rect(window, green, (170, 900, 110, 110))
             else:
-                pygame.draw.rect(window, grey, (170, 900, 110, 110))
+                pg.draw.rect(window, grey, (170, 900, 110, 110))
 
             if 6 <= Settings.all_player_upgrades < 9:
-                pygame.draw.rect(window, green, (290, 900, 110, 110))
+                pg.draw.rect(window, green, (290, 900, 110, 110))
             else:
-                pygame.draw.rect(window, grey, (290, 900, 110, 110))
+                pg.draw.rect(window, grey, (290, 900, 110, 110))
 
             if Settings.all_player_upgrades == 9:
-                pygame.draw.rect(window, green, (410, 900, 110, 110))
+                pg.draw.rect(window, green, (410, 900, 110, 110))
             else:
-                pygame.draw.rect(window, grey, (410, 900, 110, 110))
+                pg.draw.rect(window, grey, (410, 900, 110, 110))
 
             window.blit(player_level_1, (72, 922))
             window.blit(player_level_2, (192, 922))
@@ -158,19 +158,19 @@ class Shop:
                 else:
                     window.blit(no_ic, position)
 
-            pygame.display.update()
+            pg.display.update()
 
             # Event checking
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        pygame.quit()
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    pg.quit()
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_ESCAPE:
+                        pg.quit()
 
                 # This piece of code is responsible for purchasing upgrades when certain conditions are met
                 # protection against clicking several times in the same place has been introduced
-                if event.type == pygame.MOUSEBUTTONDOWN and not mouse_state:
+                if event.type == pg.MOUSEBUTTONDOWN and not mouse_state:
                     mouse_state = True
                     if add_bullet_speed_hit_box.collidepoint(mouse_xy) and Settings.player_bullet_speed_upgrade < 3 \
                             and Settings.player_cash >= bullet_speed_upgrade_cost:
@@ -195,5 +195,5 @@ class Shop:
                     if exit_icon_hit_box.collidepoint(mouse_xy):
                         Screens.loading()
                         main()
-                elif event.type == pygame.MOUSEBUTTONUP:
+                elif event.type == pg.MOUSEBUTTONUP:
                     mouse_state = False
