@@ -4,8 +4,9 @@ Computer game based on the popular space invaders game
 ## Table of Contents
 * [General info](#general-info)
 * [Technologies Used](#technologies-used)
-* [Setup](#setup)
-* [Screenshots](#screenschots)
+* [Setup pip](#setup-pip--requirementstxt)
+* [Setup poetry](#setup-poetry)
+* [Screenshots](#screenshots)
 * [Game Controls](#game-controls)
 * [Project Status](#project-status)
 * [Sources](#sources)
@@ -15,16 +16,34 @@ I created a 2D game in Python, based on the classic Space Invaders. Thanks to th
 
 ## Technologies Used
 Project is created with:
-* Python version: 3.10
-* Pygame version: 2.6.1
+* Python
+* Pygame
 * PyCharm Community Edition
 * Gimp
 
-## Setup
-To run this project, create new empty project in PyCharm editor, copy all files and put command below in PyCharm terminal:
-```
+## Setup (pip + requirements.txt)
+
+1. Clone GitHub repozitory `git clone https://github.com/gabrielkomor/SpaceInvaders.git`
+
+2. To run this project, create new empty project in PyCharm editor, copy all files and put command below in PyCharm terminal:
+
+```shell
 pip install -r .\requirements.txt
 ```
+
+## Setup (poetry)
+
+1. Clone GitHub repozitory `git clone https://github.com/gabrielkomor/SpaceInvaders.git`
+
+2. Install poetry via command below (Windows)
+
+```shell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+```
+
+3. Add poetry to environment variables (you can find `poetry.exe` in `...\AppData\Roaming\Python\Scripts`)
+
+4. Install Python environment and dependencies using `poetry install` command
 
 ## Screenshots
 ### Sample screenshots from the game:
