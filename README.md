@@ -23,7 +23,11 @@ Project is created with:
 
 ## Setup (pip + requirements.txt)
 
-1. Clone GitHub repozitory `git clone https://github.com/gabrielkomor/SpaceInvaders.git`
+1. Clone GitHub repozitory
+
+```shell
+git clone https://github.com/gabrielkomor/SpaceInvaders.git
+```
 
 2. To run this project, create new empty project in PyCharm editor, copy all files and put command below in PyCharm terminal:
 
@@ -33,9 +37,13 @@ pip install -r .\requirements.txt
 
 ## Setup (poetry)
 
-1. Clone GitHub repozitory `git clone https://github.com/gabrielkomor/SpaceInvaders.git`
+1. Clone GitHub repozitory
 
-2. Install poetry via command below (Windows)
+```shell
+git clone https://github.com/gabrielkomor/SpaceInvaders.git
+```
+
+2. Install poetry via command below (Windows Powershell)
 
 ```shell
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
@@ -43,7 +51,19 @@ pip install -r .\requirements.txt
 
 3. Add poetry to environment variables (you can find `poetry.exe` in `...\AppData\Roaming\Python\Scripts`)
 
-4. Install Python environment and dependencies using `poetry install` command
+4. Install Python environment and dependencies using 
+
+```shell
+poetry install --no-root
+```
+
+5. (Guide for PyCharm) Create new virtual environment:
+
+- `Add New Interpreter` -> `Add Local Interpreter`
+- `Environment` -> `Generate New`
+  - `Type` -> `Poetry`
+  - `Base Python` -> path to yor system Python (should be added automatically)
+  - `Path to Poetry` -> `...\AppData\Roaming\Python\Scripts\poetry.exe`
 
 ## Screenshots
 ### Sample screenshots from the game:
